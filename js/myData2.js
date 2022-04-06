@@ -8,9 +8,9 @@ let bestTime;
 let typeOfCuisine;
 
 
-let s = 'Eating Around NOLA';
+let s = 'Eat With Me Around NOLA <3';
 
-let eatingAtRestaurants = [];
+let eatingAtRestaurantsArray = [];
 
 let imageArray = [];
 
@@ -22,13 +22,14 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0);
   canvas.style("z-index", "-1");
-  background(244, 230, 186);
-  for (var x = 0; x < width; x += width / 50) {
-    for (var y = 0; y < height; y += height / 30) {
-      stroke(125, 165, 188);
-      strokeWeight(1);
+  background(255, 171, 206);
+  for (var x = 0; x < width; x += width / 20) {
+    for (var y =0; y < height; y += height / 20) {
+      stroke(240, 46, 126);
+      strokeWeight(3);
       line(x, 0, x, height);
       line(0, y, width, y);
+      bezier(85, 20, 10, 10, 90, 90, 15, 80);
     }
   }
 //  imageMode(CENTER);
@@ -48,13 +49,13 @@ function setup() {
     typeOfCuisine = table.getString(i, 'type of cuisine');
 
     //loading the image array
-    imageArray[i] = loadImage('images/food ' + i + '.jpg');
+   imageArray[i] = loadImage('food/' + table.getString(i, 'image'));
 
     //adding an image to the object
-    eatingAtRestaurants.push(new eatingAtRestaurants(date, restaurant, meal, bestTime, typeOfCuisine, imageArray[i]));
+    eatingAtRestaurantsArray.push(new eatingAtRestaurants(date, restaurant, meal, bestTime, typeOfCuisine, imageArray[i]));
   }
-  for (let i = 0; i < eatingAtRestaurants.length; i++){
-    eatingAtRestaurants[i].show();
+  for (let i = 0; i < eatingAtRestaurantsArray.length; i++){
+    eatingAtRestaurantsArray[i].show();
   }
   //top banner rectangle
   //big rectangle
@@ -74,17 +75,19 @@ function setup() {
   fill(255, 161, 204);
   rect(432, 50, 289, 50);
 
-  //smily face
-  fill(241, 90, 36);
-  rect(287, 70, 145, 130);
-  fill(249, 180, 88);
-  circle(360, 135, 120);
+
+ //star
+  push();
+  rotate(frameCount / -100.0);
+  star(300, 100, 120, 60, 5);
+  pop();
+
 
   //title text
   noStroke();
   fill(255);
   textSize(30);
-  text('My Experience', 570, 85);
+  text('My Food Diary', 570, 85);
 
   //paragraph text
   noStroke()
@@ -93,11 +96,11 @@ function setup() {
   textSize(14);
   text(s, 454, 140, 530, 200);
 
-  //Date text
+  //text
   noStroke();
   fill(0);
   textSize(18);
-  text('2021.02.25 ~ 2021.03.10', 750, 94);
+  text('Freshman Year', 750, 94);
 
   //Data box
   noStroke();
@@ -130,7 +133,7 @@ class eatingAtRestaurants{
     this.image = image;
 
     this.button = createButton(this.date)
-    for(let i = -1; i < eatingAtRestaurants.length; i++){
+    for(let i = -1; i < eatingAtRestaurantsArray.length; i++){
       this.button.position(1150, i*25+160);
     }
     this.button.style('z-index', '1');
@@ -169,10 +172,30 @@ class eatingAtRestaurants{
     textSize(18);
     textAlign(LEFT);
 
-    text('restaurant: ' + this.restaurant, 730, 300 );
-    text('meal: ' + this.meal, 730, 330)
-    text('bestTime: ' + this.bestTime, 730, 360);
-    text('typeOfCuisine: ' + this.typeOfCuisine, 730, 390);
+    text('Restaurant: ' + this.restaurant, 730, 300 );
+    text('Meal I Had: ' + this.meal, 730, 330)
+    text('Best Time To Go: ' + this.bestTime, 730, 360);
+    text('Type of Cuisine: ' + this.typeOfCuisine, 730, 390);
     image(this.image, 294, 259, 326, 326);
   }
+}
+
+function windowResized(){
+resizeCanvas(windowWidth,windowHeight)
+
+}
+
+function star(x, y, radius1, radius2, npoints) {
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle / 2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius2;
+    let sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a + halfAngle) * radius1;
+    sy = y + sin(a + halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
 }
