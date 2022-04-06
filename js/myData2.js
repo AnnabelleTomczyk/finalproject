@@ -8,6 +8,7 @@ let bestTime;
 let typeOfCuisine;
 
 
+
 let s = 'Eat With Me Around NOLA <3';
 
 let eatingAtRestaurantsArray = [];
@@ -25,11 +26,9 @@ function setup() {
   background(255, 171, 206);
   for (var x = 0; x < width; x += width / 20) {
     for (var y =0; y < height; y += height / 20) {
-      stroke(240, 46, 126);
-      strokeWeight(3);
-      line(x, 0, x, height);
-      line(0, y, width, y);
-      bezier(85, 20, 10, 10, 90, 90, 15, 80);
+      noStroke();
+      fill(255,31,128);
+      ellipse(random()*windowWidth, random()*windowHeight,10,10)
     }
   }
 //  imageMode(CENTER);
@@ -59,8 +58,7 @@ function setup() {
   }
   //top banner rectangle
   //big rectangle
-  fill(122,201,67);
-  rect(306, 87, 835, 135);
+
   stroke(0);
   strokeWeight(1.5);
   fill(255);
@@ -77,27 +75,33 @@ function setup() {
 
 
  //star
+  stroke(255,31,128)
+  strokeWeight(5)
   push();
   rotate(frameCount / -100.0);
   star(300, 100, 120, 60, 5);
   pop();
 
 
+
   //title text
-  noStroke();
+  stroke(255,31,128);
+  strokeWeight(3)
   fill(255);
   textSize(30);
   text('My Food Diary', 570, 85);
 
   //paragraph text
-  noStroke()
+  stroke(255,31,128)
+  strokeWeight(1)
   textAlign(LEFT);
   fill(0);
   textSize(14);
   text(s, 454, 140, 530, 200);
 
   //text
-  noStroke();
+  stroke(255,31,128);
+  strokeWeight(1)
   fill(0);
   textSize(18);
   text('Freshman Year', 750, 94);
@@ -134,9 +138,10 @@ class eatingAtRestaurants{
 
     this.button = createButton(this.date)
     for(let i = -1; i < eatingAtRestaurantsArray.length; i++){
-      this.button.position(1150, i*25+160);
+      this.button.position(1150, i*50+100);
     }
     this.button.style('z-index', '1');
+
   }
 
   show(){
@@ -155,12 +160,13 @@ class eatingAtRestaurants{
     rect(294, 259, 326, 326);
 
     //Data box
-    noStroke();
-    fill(255, 123, 172);
-    rect(725, 259, 415, 340);
-    stroke(0);
-    strokeWeight(1.5);
+    stroke(255,31,128);
+    strokeWeight(3)
     fill(255);
+    rect(725, 259, 415, 340);
+    stroke(255,31,128);
+    strokeWeight(5);
+    fill(255, 224, 238);
     rect(719, 259, 400, 326);
 
     print("update");
