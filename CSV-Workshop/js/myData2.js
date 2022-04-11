@@ -8,15 +8,22 @@ let bestTime;
 let typeOfCuisine;
 
 
+let myReccomendations;
+
+
 
 let s = 'Eat With Me Around NOLA <3';
 
 let eatingAtRestaurantsArray = [];
 
+let myRecsArray= [];
+
 let imageArray = [];
 
 function preload(){
   table = loadTable('js/eatingAtRestaurants.csv', 'csv', 'header');
+
+  table=loadTable('js/myRecs.csv', 'csv', 'header')
   // img=loadImage('images/la.jpg');
 }
 
@@ -32,8 +39,29 @@ function setup() {
       ellipse(random()*windowWidth, random()*windowHeight,10,10)
   // loadImage('images/la.jpg');
   //   image(img,700,140,100,100)
+  }
 
-    }
+//   sel= createSelect();{
+//   sel.option('My Reccomendations')
+//   textAlign(LEFT)
+//   sel.position(10,10);
+//   sel.option('My Favorite Overall');
+//   sel.option('Best Brunch');
+//   sel.option('Most frequented');
+//   sel.changed(mySelectEvent);
+// }
+
+myReccomendations= createSelect();
+myReccomendations.option ('My Reccomendations')
+for (let i = 0; i < table.getRowCount(); i++){
+
+  let myFavoriteOverall = table.getString(i, 'my favorite overall');
+
+  let bestBrunch = table.getString(i, 'best brunch');
+
+  let mostFrequented= table.getString(i, 'most frequented');
+
+
   }
 //  imageMode(CENTER);
   textAlign(CENTER);
@@ -184,9 +212,9 @@ class eatingAtRestaurants{
 
 
 
-    fill(0);
+    fill(255);
     noStroke();
-    textSize(25);
+    textSize(18);
     textAlign(LEFT);
 
     text('Restaurant: ' + this.restaurant, 730, 300 );
@@ -215,4 +243,20 @@ function star(x, y, radius1, radius2, npoints) {
     vertex(sx, sy);
   }
   endShape(CLOSE);
+}
+
+
+  function changeData(){
+
+    for (let i = 0; i < table.getRowCount(); i++){
+      if(sel.value() == table.getString(i, 'my favorite Overall')){
+        text(table.getString(i, 'my favorite overall'));
+        text(table.getString(i, 'best brunch'));
+        text(table.getString(i, 'most frequented'));
+
+
+}
+}
+
+}
 }
