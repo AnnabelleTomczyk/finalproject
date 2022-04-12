@@ -8,8 +8,9 @@ let bestTime;
 let typeOfCuisine;
 
 
-let myReccomendations;
+let myRecs;
 
+let myReccomendations;
 
 
 let s = 'Eat With Me Around NOLA <3';
@@ -61,7 +62,11 @@ for (let i = 0; i < table.getRowCount(); i++){
 
   let mostFrequented= table.getString(i, 'most frequented');
 
+myRecsArray.push(new myReccomendations(myFavoriteOverall,bestBrunch,mostFrequented));
 
+  }
+  for (let i = 0; i < myRecsArray.length; i++){
+    myRecsArray[i].show();
   }
 //  imageMode(CENTER);
   textAlign(CENTER);
