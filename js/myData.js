@@ -52,7 +52,7 @@ function changeData(){
   textAlign(CENTER)
   imageMode(CENTER);
   for (let i = 0; i < table.getRowCount(); i++){
-    if(companyMenu.value() == table.getString(i, 'restaurant')){
+    if(restaurantMenu.value() == table.getString(i, 'restaurant')){
       text(table.getString(i, 'restaurant'), windowWidth/2, 50);
       text(table.getString(i, 'date'), windowWidth/2, 90);
       text(table.getString(i, 'meal'), windowWidth/2, 130);
