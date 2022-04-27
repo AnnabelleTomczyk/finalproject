@@ -369,7 +369,7 @@ class eatingAtRestaurants{
 
     this.button = createButton(this.date)
     for(let i = -1; i < eatingAtRestaurantsArray.length; i++){
-      this.button.position(1150, i*50+100);
+      this.button.position(1150, i*45+100);
 
     }
     this.button.style('z-index', '1');
@@ -426,15 +426,15 @@ class eatingAtRestaurants{
     text('Meal I Had: ' + this.meal, 730, 330)
     text('Best Time To Go: ' + this.bestTime, 730, 360);
     text('Type of Cuisine: ' + this.typeOfCuisine, 730, 390);
-    rect(294, 259, 326, 326)
+    rect(294, 300, 200, 200)
 
-    image(this.image, 294, 259, 326, 326);
+    image(this.image, 294, 300, 200, 200);
 
   }
 }
 
 function windowResized(){
-  resizeCanvas(windowWidth,windowHeight)
+  //resizeCanvas(windowWidth,windowHeight)
 
 }
 
